@@ -1,62 +1,11 @@
 {
   "name": "sync-mta-version",
-  "version": "0.1.2",
+  "version": "0.1.0",
+  "license": "MIT",
   "description": "The goal of sync-mta-version is to update the mta.yaml with the version from the package.json",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dxfrontier/sync-mta-version.git"
-  },
-  "main": "./dist/cli.js",
-  "bin": {
-    "sync-mta-version": "./dist/cli.js"
-  },
-  "files": [
-    "./dist"
-  ],
-  "scripts": {
-    "eslint:message": "echo 'ESLint started ...'",
-    "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix",
-    "prettier:message": "echo 'Prettier started ...'",
-    "prettier": "prettier . --check",
-    "prettier:fix": "prettier . --write",
-    "check": "run-s eslint:message eslint prettier:message prettier",
-    "fix": "run-s eslint:message eslint:fix prettier:message prettier:fix",
-    "test": "jest",
-    "prepare": "husky",
-    "update:manually": "node ./dist/cli.js",
-    "build:message": "echo 'Building (TS => JS), ./dist will be updated ...'",
-    "build:ts": "tsc",
-    "build": "run-s build:message build:ts"
-  },
-  "dependencies": {
-    "yaml": "^2.5.0"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@commitlint/prompt-cli": "^19.4.0",
-    "@commitlint/types": "^19.0.3",
-    "@eslint/js": "^10.0.0",
-    "@types/eslint__js": "^8.42.3",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^22.5.0",
-    "eslint": "^9.9.0",
-    "husky": "^9.1.5",
-    "jest": "^29.7.0",
-    "lint-staged": "^15.2.9",
-    "npm-run-all": "^4.1.5",
-    "prettier": "3.3.3",
-    "ts-jest": "^29.2.4",
-    "typedoc": "^0.26.6",
-    "typescript-eslint": "^8.2.0"
-  },
-  "lint-staged": {
-    "**/*.ts": [
-      "npm run eslint:fix",
-      "npm run prettier:fix",
-      "npm run test --bail --findRelatedTests ./test"
-    ]
   },
   "keywords": [
     "Sync SAP CAP MTA",
@@ -80,5 +29,59 @@
       "email": "mathias.von-kaiz@abs-gmbh.de"
     }
   ],
-  "license": "MIT"
+  "main": "./dist/cli.js",
+  "bin": {
+    "sync-mta-version": "./dist/cli.js"
+  },
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "eslint:message": "echo 'ESLint started ...'",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
+    "prettier:message": "echo 'Prettier started ...'",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
+    "check": "run-s eslint:message eslint prettier:message prettier",
+    "fix": "run-s eslint:message eslint:fix prettier:message prettier:fix",
+    "test": "jest",
+    "prepare": "husky",
+    "sync:mta": "sync-mta-version",
+    "update:manually": "node ./dist/cli.js",
+    "build:message": "echo 'Building (TS => JS), ./dist will be updated ...'",
+    "build:ts": "tsc",
+    "build": "run-s build:message build:ts"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/prompt-cli": "^19.4.0",
+    "@commitlint/types": "^19.0.3",
+    "@eslint/js": "^10.0.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.0",
+    "eslint": "^9.9.1",
+    "husky": "^9.1.5",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.9",
+    "npm-run-all": "^4.1.5",
+    "prettier": "3.3.3",
+    "ts-jest": "^29.2.5",
+    "typedoc": "^0.26.6",
+    "typescript-eslint": "^8.2.0",
+    "vitest": "^2.0.5"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "npm run eslint:fix",
+      "npm run prettier:fix",
+      "npm run sync:mta",
+      "npm run test --bail --findRelatedTests ./test"
+    ]
+  }
 }

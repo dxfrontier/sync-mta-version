@@ -26,12 +26,10 @@
     "moduleResolution": "Node",
 
     "outDir": "./dist"
-
-    // "paths": {
-    //   "#util/*": ["/lib/util/*"],
-    //   "#constants": ["./lib/constants"],
-    //   "#core/*": ["./lib/core/*"]
-    // }
+  },
+  "typedocOptions": {
+    "entryPoints": ["./lib/**"],
+    "out": "./lib/docs"
   },
   "include": ["./lib"]
 }
