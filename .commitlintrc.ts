@@ -13,7 +13,8 @@ const Configuration: UserConfig = {
       RuleConfigSeverity.Error,
       'always',
       [
-        'versionUpdated',
+        'core',
+        'constants',
         'types',
         'util',
         // Changes that affect the build system or external dependencies.
