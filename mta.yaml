@@ -1,6 +1,6 @@
-_schema-version: "3.1"
+_schema-version: '3.1'
 ID: cds-ts-samples-correct-version
-version: 0.0.1
+version: 0.0.3
 description: A simple CAP project.
 parameters:
   enable-parallel-deployments: true
