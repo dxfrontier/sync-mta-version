@@ -17,7 +17,7 @@ describe('VersionUpdater', () => {
         return JSON.stringify(mockPackageJson);
       }
 
-      if (filePath.endsWith(constants.MTA)) {
+      if (filePath.endsWith('mta.yaml')) {
         return YAML.stringify(mockMtaYaml);
       }
 
@@ -26,7 +26,7 @@ describe('VersionUpdater', () => {
 
     // Mock writeFileSync to capture the updated YAML content
     (fs.writeFileSync as jest.Mock).mockImplementation((filePath: string, data: string) => {
-      if (filePath.endsWith(constants.MTA)) {
+      if (filePath.endsWith('mta.yaml')) {
         mockMtaYaml.version = YAML.parse(data).version;
       }
     });
