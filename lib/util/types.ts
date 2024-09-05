@@ -1,7 +1,6 @@
 export type Paths = {
   package: string;
   mta: string;
-  extensions?: string[];
 };
 
 export type VersionProp = {
