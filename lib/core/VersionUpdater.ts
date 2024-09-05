@@ -4,11 +4,9 @@ import * as YAML from 'yaml';
 
 import { constants } from '../constants/constants';
 import { util } from '../util/util';
-
-// import { Command } from 'commander';
+import { CliRead } from '../util/helpers/CliRead';
 
 import type { VersionProp, Paths, CliFiles } from '../util/types';
-import { CliRead } from '../util/helpers/CliRead';
 
 /**
  * Class representing a version updater for synchronizing version information
