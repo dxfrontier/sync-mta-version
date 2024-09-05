@@ -47,40 +47,40 @@
     "fix": "run-s eslint:message eslint:fix prettier:message prettier:fix",
     "test": "jest",
     "prepare": "husky",
-    "sync:mta": "sync-mta-version",
-    "update:manually": "node ./dist/cli.js",
+    "update:manually": "ts-node ./lib/cli.ts",
+    "update:manually:args": "ts-node ./lib/cli.ts -f mta.yaml -e ext-dev.mtaext ext-prod.mtaext",
     "build:message": "echo 'Building (TS => JS), ./dist will be updated ...'",
     "build:ts": "tsc",
     "build": "run-s build:message build:ts"
   },
   "dependencies": {
-    "yaml": "^2.5.0"
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@commitlint/prompt-cli": "^19.4.0",
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
+    "@commitlint/prompt-cli": "^19.4.1",
     "@commitlint/types": "^19.0.3",
     "@eslint/js": "^10.0.0",
     "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.12",
-    "@types/node": "^22.5.0",
+    "@types/node": "^22.5.4",
+    "commander": "^12.1.0",
     "eslint": "^9.9.1",
     "husky": "^9.1.5",
     "jest": "^29.7.0",
-    "lint-staged": "^15.2.9",
+    "lint-staged": "^15.2.10",
     "npm-run-all": "^4.1.5",
     "prettier": "3.3.3",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.26.6",
-    "typescript-eslint": "^8.2.0",
+    "typescript-eslint": "^8.4.0",
     "vitest": "^2.0.5"
   },
   "lint-staged": {
     "**/*.ts": [
       "npm run eslint:fix",
       "npm run prettier:fix",
-      "npm run sync:mta",
       "npm run test --bail --findRelatedTests ./test"
     ]
   }
