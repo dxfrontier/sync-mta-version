@@ -27,6 +27,20 @@ npm install --save-dev @dxfrontier/sync-mta-version
 
 ### Usage
 
+| Option                              | Description                                                                                 | Default                 |
+|-------------------------------------|---------------------------------------------------------------------------------------------|-------------------------|
+| `-f`, `--file <mta>`                | Add the MTA file to be processed.                                                           | `"mta.yaml"`            |
+| `-e`, `--extension [extensions...]` | Add the MTA extension (mtaext) files to be processed (multiple files allowed, separated by space) |                         |
+| `-h`, `--help`                      | Display help for the command                                                                |                         |
+
+**Example:**
+
+```bash
+$ sync-mta-version
+$ sync-mta-version -f mta.yaml
+$ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext
+```
+
 #### `Option 1`: using as `command` in the package.json 
 
 1. Add the following script to the `scripts` section of your `package.json`: 
