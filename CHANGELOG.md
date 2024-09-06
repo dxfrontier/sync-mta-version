@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2024-09-06
+
+### 🚀 Features
+
+- *(util)* Added to the commander the after Example helper text
+
+### ⚙️ Miscellaneous Tasks
+
+- *(readme)* Readme updated
+- Version bump to 0.1.3
+
 ## [0.1.2] - 2024-09-06
 
 ### 🚀 Features
