@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2024-09-06
+
+### 🚀 Features
+
+- *(core)* Added commander to the command and added support for mtaext
+
+### 🐛 Bug Fixes
+
+- *(types)* Removed unused type
+
+### 🚜 Refactor
+
+- *(core)* Removed unused import
+
+### ⚙️ Miscellaneous Tasks
+
+- *(readme)* Readme updated
+- *(config)* Added mtaext and updated mta
+- Version bump to 0.1.2
+
 ## [0.1.1] - 2024-09-02
 
 ### ⚙️ Miscellaneous Tasks
