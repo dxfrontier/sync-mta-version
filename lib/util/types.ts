@@ -6,3 +6,5 @@ export type Paths = {
 export type VersionProp = {
   version: string;
 };
+
+export type CliFiles = { file: string; extension: string[] };

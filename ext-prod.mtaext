@@ -1,0 +1,9 @@
+_schema-version: "3.1"
+ID: cds-ts-samples-correct-version
+extends: cds-ts-samples-correct-version
+version: 0.0.3
+modules:
+  - name: import-srv
+    parameters:
+      memory: 256M
+      instances: 2

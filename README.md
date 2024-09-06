@@ -45,6 +45,7 @@ npm install --save-dev @dxfrontier/sync-mta-version
 ```bash
 npm run sync:mta
 ```
+
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 
@@ -54,8 +55,8 @@ npm run sync:mta
 The example below outlines a workflow that triggers on merging a pull request into `main`
 
 ```yaml
+
 # This is a workflow which copies the package.json version into the mta.yaml after the `Pull request` was merged
- 
 name: Synchronize mta
 
 on:
@@ -70,6 +71,7 @@ permissions:
   pull-requests: write
 
 jobs:
+
   # This job will check if the `Pull Request` was `merged` into `main` branch
   check_valid_merge:
     name: Merge 'Pull request' into 'main' branch
@@ -82,7 +84,7 @@ jobs:
   # This job will syncronize the mta.yaml by running the 'npm run sync:mta' which is a command from 'package.json'
   synchronize_mta_version:
     name: Synchronize mta.yaml with the package.json version 
-    needs : check_valid_merge
+    needs: check_valid_merge
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -90,10 +92,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Synchronize mta 
+      - name: Synchronize mta.yaml version with the package.json version
         run: npm install
         run: npm run sync:mta  
 
+      # create a pull request containing the mta.yaml version updated
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
         with:
@@ -109,6 +112,8 @@ jobs:
 >   1. When the `Pull request` was `closed` and `merged`.
 >   2. The workflow will run `npm run sync:mta` command defined in the `package.json`.
 >   3. A new PR will be created which will contain a change in the `mta.yaml` having the new version updated based on the `package.json`.
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 <!-- 
 #### `Option 2`: using `sync-mta-version` in the `husky` + `lint-staged` github hooks
