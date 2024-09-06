@@ -1,6 +1,6 @@
 {
   "name": "sync-mta-version",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "description": "The goal of sync-mta-version is to update the mta.yaml with the version from the package.json",
   "repository": {
