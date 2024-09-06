@@ -16,6 +16,14 @@ export class CliRead {
       .option(
         '-e, --extension [extensions...]',
         'Add the MTA extension (mtaext) files to be processed (multiple files allowed, separated by space)',
+      )
+      .addHelpText(
+        'after',
+        `
+Example:
+  $ sync-mta-version
+  $ sync-mta-version -f mta.yaml
+  $ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext`,
       );
 
     this.commander.parse(process.argv);
