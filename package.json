@@ -1,5 +1,5 @@
 {
-  "name": "sync-mta-version",
+  "name": "@dxfrontier/sync-mta-version",
   "version": "0.1.5",
   "license": "MIT",
   "description": "The goal of sync-mta-version is to update the mta.yaml with the version from the package.json",
