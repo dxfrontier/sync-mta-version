@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2024-09-11
+
+### 🐛 Bug Fixes
+
+- *(build)* Added the new ORG token to deployment github action
+
+### ⚙️ Miscellaneous Tasks
+
+- Version bump to 0.1.4
+
 ## [0.1.3] - 2024-09-06
 
 ### 🚀 Features
