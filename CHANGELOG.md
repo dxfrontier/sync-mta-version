@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2024-09-11
+
+### 🐛 Bug Fixes
+
+- *(build)* Added package-lock.json as it missed and deployment failed
+
+### ⚙️ Miscellaneous Tasks
+
+- Version bump to 0.1.5
+
 ## [0.1.4] - 2024-09-11
 
 ### 🐛 Bug Fixes
