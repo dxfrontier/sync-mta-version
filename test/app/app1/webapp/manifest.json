@@ -1,0 +1,11 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "de.freudenberg.fco.accruals",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.1.6"
+    }
+  }
+}
