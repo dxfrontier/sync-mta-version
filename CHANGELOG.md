@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2024-10-11
+
+### 🚀 Features
+
+- *(ui-app-version)* Now you can use `-u` to update the app/* package.json & manifest.json
+
+### 🚜 Refactor
+
+- *(commitlint)* Removed the scope-enum to have on the fly scopes
+
+### ⚙️ Miscellaneous Tasks
+
+- *(tests)* Updated tests for the `-u` option
+- *(mta-tests)* Updated mta tests
+- *(ui-app-version)* Readme updated with the `ui` option
+- *(package-dependencies)* Updated
+- Version bump to 0.2.0
+
 ## [0.1.6] - 2024-09-11
 
 ### 🐛 Bug Fixes
