@@ -11,15 +11,12 @@ export const util = {
   },
 
   createMessage(success: boolean, fileName: string) {
-    const status = success ? colors.green : colors.red;
+    const prefix = success ? colors.green('[SUCCESS]') : colors.red('[FAIL]');
+    const syncStatus = success ? 'successfully' : 'not successfully';
 
     return {
-      message: status(
-        `The version in ${fileName} has ${success ? '' : 'not '}been successfully synchronized with the main ${'package.json'} version.`,
-      ),
-      messageAll: status(
-        `All ${`*.${fileName}`} files have ${success ? '' : 'not '}been successfully synchronized with the main ${'package.json'} version.`,
-      ),
+      message: `${prefix} - The version in ${fileName} has been ${syncStatus} synchronized with the main package.json version.`,
+      messageAll: `${prefix} - All *.${fileName} files have been ${syncStatus} synchronized with the main package.json version.`,
     };
   },
 
