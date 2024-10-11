@@ -29,8 +29,9 @@ npm install --save-dev @dxfrontier/sync-mta-version
 
 | Option                              | Description                                                                                 | Default                 |
 |-------------------------------------|---------------------------------------------------------------------------------------------|-------------------------|
-| `-f`, `--file <mta>`                | Add the MTA file to be processed.                                                           | `"mta.yaml"`            |
-| `-e`, `--extension [extensions...]` | Add the MTA extension (mtaext) files to be processed (multiple files allowed, separated by space) |                         |
+| `-f`, `--file <mta>`                | add the MTA file to be processed for version synchronization with the root package.json version (default: "mta.yaml").                                                           | `"mta.yaml"`            |
+| `-e`, `--extension [extensions...]` | add the MTA extension (mtaext) files to be processed for version synchronization with the root package.json version (multiple files allowed, separated by space). |                         |
+| `-u`, `--uiLocation <uiLocation>`   | add the UI folder to update package.json (version) and manifest.json ("sap.app".applicationVersion.version) properties recursively from the root package.json version (usually is /app).                                                           |                         |
 | `-h`, `--help`                      | Display help for the command                                                                |                         |
 
 **Example:**
@@ -39,7 +40,10 @@ npm install --save-dev @dxfrontier/sync-mta-version
 $ sync-mta-version
 $ sync-mta-version -f mta.yaml
 $ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext
+$ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext -u /app
+$ sync-mta-version -f mta.yaml -u /app
 ```
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 #### `Option 1`: using as `command` in the package.json 
 
@@ -47,7 +51,7 @@ $ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext
    
 ```json
 "scripts": {
-  "sync:mta": "sync-mta-version"
+  "sync:mta": "sync-mta-version -f mta-yaml"
 }
 ```
 
@@ -85,20 +89,8 @@ permissions:
   pull-requests: write
 
 jobs:
-
-  # This job will check if the `Pull Request` was `merged` into `main` branch
-  check_valid_merge:
-    name: Merge 'Pull request' into 'main' branch
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo The PR was merged.
-
-  # This job will syncronize the mta.yaml by running the 'npm run sync:mta' which is a command from 'package.json'
   synchronize_mta_version:
     name: Synchronize mta.yaml with the package.json version 
-    needs: check_valid_merge
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -106,26 +98,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Synchronize mta.yaml version with the package.json version
+      - name: Install dependencies
         run: npm install
-        run: npm run sync:mta  
+        run: npm install @dxfrontier/sync-mta-version
 
-      # create a pull request containing the mta.yaml version updated
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          base: main
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: mta.yaml version updated
-          body: mta.yaml version updated with the latest version from package.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Sync mta versioning
+        run: npx sync-mta-version -f mta.yaml
 ```
-> [!TIP]
-> Steps explained : 
->   1. When the `Pull request` was `closed` and `merged`.
->   2. The workflow will run `npm run sync:mta` command defined in the `package.json`.
->   3. A new PR will be created which will contain a change in the `mta.yaml` having the new version updated based on the `package.json`.
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 

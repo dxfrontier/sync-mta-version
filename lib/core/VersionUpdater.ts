@@ -1,26 +1,26 @@
-import * as fs from 'fs';
 import * as path from 'path';
-import * as YAML from 'yaml';
 
 import { constants } from '../constants/constants';
 import { util } from '../util/util';
 import { CliRead } from '../util/helpers/CliRead';
+import { SyncAppsVersion } from '../util/helpers/SyncAppsVersion';
 
 import type { VersionProp, Paths, CliFiles } from '../util/types';
 
 /**
- * Class representing a version updater for synchronizing version information
- * between `package.json` and `mta.yaml` files.
+ * Class representing a version updater for synchronizing version information between `package.json` and `mta.yaml` files.
  */
 export class VersionUpdater {
   private readonly paths: Paths = Object.create({});
   private readonly currentDirectory: string;
-  private files: CliFiles;
+  private readonly files: CliFiles;
+  private readonly syncAppsVersion: SyncAppsVersion;
 
   constructor() {
     this.files = new CliRead().getFiles();
     this.currentDirectory = process.cwd();
     this.paths = this.initializePaths();
+    this.syncAppsVersion = new SyncAppsVersion(this.paths.package);
   }
 
   /**
@@ -35,36 +35,12 @@ export class VersionUpdater {
   }
 
   /**
-   * Reads and parses JSON or YAML file.
-   * @private
-   */
-  private readFile<T>(filePath: string): T {
-    const content = fs.readFileSync(filePath, constants.UTF_8);
-    return filePath.endsWith('.json') ? JSON.parse(content) : YAML.parse(content);
-  }
-
-  /**
-   * Writes content to the specified YAML file.
-   * @private
-   */
-  private writeYamlFile(filePath: string, content: object): boolean {
-    try {
-      const yamlContent = YAML.stringify(content);
-      fs.writeFileSync(filePath, yamlContent, constants.UTF_8);
-      return true;
-    } catch (error) {
-      util.showConsoleMessage(error as any);
-      return false;
-    }
-  }
-
-  /**
    * Updates the version in the specified YAML file to match the version in `package.json`.
    * @private
    */
   private updateFileVersion(filePath: string): VersionProp {
-    const packageVersion: VersionProp = this.readFile<VersionProp>(this.paths.package);
-    const yamlFile: VersionProp = this.readFile<VersionProp>(filePath);
+    const packageVersion: VersionProp = util.readFile<VersionProp>(this.paths.package);
+    const yamlFile: VersionProp = util.readFile<VersionProp>(filePath);
 
     yamlFile.version = packageVersion.version;
 
@@ -77,11 +53,11 @@ export class VersionUpdater {
    */
   private syncMTAVersion(): boolean {
     const updatedMTA = this.updateFileVersion(this.paths.mta);
-    return this.writeYamlFile(this.paths.mta, updatedMTA);
+    return util.writeFile(this.paths.mta, updatedMTA);
   }
 
   /**
-   * Optionally synchronizes the version in extension files with `package.json` if provided.
+   * Synchronizes the version in extension files with `package.json`.
    * @private
    */
   private syncMTAExtensions(): boolean {
@@ -93,9 +69,9 @@ export class VersionUpdater {
     let allUpdated = true;
 
     this.files.extension.forEach((extensionFile) => {
-      const extPath = path.resolve(this.currentDirectory, extensionFile);
-      const updatedExt = this.updateFileVersion(extPath);
-      const isExtUpdated = this.writeYamlFile(extPath, updatedExt);
+      const extensionPath = path.resolve(this.currentDirectory, extensionFile);
+      const updatedExt = this.updateFileVersion(extensionPath);
+      const isExtUpdated = util.writeFile(extensionPath, updatedExt);
 
       if (!isExtUpdated) {
         allUpdated = false;
@@ -106,24 +82,44 @@ export class VersionUpdater {
   }
 
   /**
-   * Synchronizes the version between `package.json`, `mta.yaml`, and optional extensions.
+   * Synchronizes the version between `package.json` and `mta.yaml`, `*.mtaext`, `manifest.json`
    * Displays success or failure messages based on the result.
    * @public
    */
   public syncVersion(): void {
     const isMtaUpdated = this.syncMTAVersion();
-    const areExtensionsUpdated = this.syncMTAExtensions();
 
-    if (isMtaUpdated) {
-      util.showConsoleMessage(constants.MESSAGES.SUCCESS);
+    util.displayUpdateMessage(
+      isMtaUpdated,
+      util.createMessage(true, 'mta.yaml').message,
+      util.createMessage(false, 'mta.yaml').message,
+    );
 
-      if (areExtensionsUpdated && this.files.extension) {
-        util.showConsoleMessage(constants.MESSAGES.SUCCESS_EXTENSIONS);
-      }
+    if (this.files.extension && this.files.extension.length > 0) {
+      const extensionsUpdated = this.syncMTAExtensions();
 
-      return;
+      util.displayUpdateMessage(
+        extensionsUpdated,
+        util.createMessage(true, 'mtaext').messageAll,
+        util.createMessage(false, 'mtaext').messageAll,
+      );
     }
 
-    util.showConsoleMessage(constants.MESSAGES.FAIL);
+    if (this.files.uiLocation) {
+      const appFolderLocation = path.join(this.currentDirectory, this.files.uiLocation);
+      const uiApp = this.syncAppsVersion.syncAppPackageAndManifestVersions(appFolderLocation);
+
+      util.displayUpdateMessage(
+        uiApp.packagesUpdated,
+        util.createMessage(true, 'package.json').messageAll,
+        util.createMessage(false, 'package.json').messageAll,
+      );
+
+      util.displayUpdateMessage(
+        uiApp.manifestsUpdated,
+        util.createMessage(true, 'manifest.json').messageAll,
+        util.createMessage(false, 'manifest.json').messageAll,
+      );
+    }
   }
 }
