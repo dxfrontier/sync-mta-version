@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2024-10-11
+
+### 🚜 Refactor
+
+- *(messages)* Refactored the messages after the command is executed
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* The deployment takes imediately effect after the PR was closed
+- Version bump to 0.2.1
+
 ## [0.2.0] - 2024-10-11
 
 ### 🚀 Features
