@@ -131,6 +131,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: CHANGELOG.md updated
           body: CHANGELOG.md updated with latest conventional commits.
-          labels: norelease, deploy
+          labels: norelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
