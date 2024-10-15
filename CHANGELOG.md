@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.2] - 2024-10-15
+
+### 🐛 Bug Fixes
+
+- *(deps)* Added commander to dependencies and deleted from devDependencies
+
+### ⚙️ Miscellaneous Tasks
+
+- Version bump to 0.2.2
+
 ## [0.2.1] - 2024-10-11
 
 ### 🚜 Refactor
