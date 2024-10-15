@@ -56,7 +56,9 @@
   "dependencies": {
     "picocolors": "^1.1.0",
     "tinyglobby": "^0.2.9",
-    "yaml": "^2.5.1"
+    "yaml": "^2.5.1",
+    "commander": "^12.1.0"
+
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -67,7 +69,6 @@
     "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.5",
-    "commander": "^12.1.0",
     "eslint": "^9.12.0",
     "husky": "^9.1.6",
     "jest": "^29.7.0",
