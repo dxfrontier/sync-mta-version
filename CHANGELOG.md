@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.4] - 2024-11-05
+
+### ⚙️ Miscellaneous Tasks
+
+- *(readme)* Updated readme and deleted unused comments from readme
+- Version bump to 0.2.4
+
 ## [0.2.3] - 2024-11-05
 
 ### ⚙️ Miscellaneous Tasks
