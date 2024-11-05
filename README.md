@@ -4,7 +4,7 @@
 ![json](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
-`sync-mta-version` is a utility designed to keep the `mta.yaml` file in sync with the version defined in `package.json`. 
+`sync-mta-version` is a utility designed to keep the `mta.yaml` file in sync with the version defined in `package.json`.
 
 ## Table of Contents
 
@@ -43,12 +43,13 @@ $ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext
 $ sync-mta-version -f mta.yaml -e dev.mtaext qa.mtaext production.mtaext -u /app
 $ sync-mta-version -f mta.yaml -u /app
 ```
+
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 #### `Option 1`: using as `command` in the package.json 
 
 1. Add the following script to the `scripts` section of your `package.json`: 
-   
+
 ```json
 "scripts": {
   "sync:mta": "sync-mta-version -f mta-yaml"
@@ -66,9 +67,7 @@ npm run sync:mta
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
-
 #### `Option 2`: using as `github` `workflow` 
-
 
 The example below outlines a workflow that triggers on merging a pull request into `main`
 
@@ -106,77 +105,6 @@ jobs:
 ```
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
-
-<!-- 
-#### `Option 2`: using `sync-mta-version` in the `husky` + `lint-staged` github hooks
-
-1. Install [Husky](https://typicode.github.io/husky/get-started.html)
-
-```bash
-npm install --save-dev husky
-```
-
-2. Run the following husky command:
-
-```bash
-npx husky init
-```
-
-> [!TIP]
-> The `init` command simplifies setting up husky in a project. It creates a `pre-commit` script in `.husky/` and updates the `prepare` script in `package.json`. Modifications can be made later to suit your workflow.
-
-3. Install [lint-staged](https://github.com/lint-staged/lint-staged)
-
-```bash
-npm install --save-dev lint-staged 
-```
-
-4. Add a `script` command `package.json` - `scripts`:
-
-```json
-"scripts": {
-  "sync:mta:version":"sync-mta-version"
-}
-```
-
-5. Add a configuration `lint-staged` in your `package.json`:
-
-```json
-{
-  "name": "sync-mta-version",
-  "scripts": {
-    // Added this line in step 4
-    "sync:mta:version":"sync-mta-version"
-  },
-  "devDependencies": {
-    // ...
-    "husky": "^9.1.5",
-    "lint-staged": "^15.2.9",
-  },
-  // Add below line to your package.json
-  "lint-staged": {
-    "**/*.ts": [
-      "npm run sync:mta:version"
-    ]
-  }
-}
-```
-
-6. Add in the `.husky` `pre-commit` hook the following command:
-
-```bash
-npx lint-staged
-```
-
-7. Try do a commit :
-
-```bash
-git commit -m "Keep calm and commit"
-```
-
-Now the `sync:mta:version` command will copy the `package.json` `version` in your `mta.yaml` to keep them both in sync.
-
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p> -->
 
 ## Contributing
 
