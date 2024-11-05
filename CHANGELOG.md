@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0] - 2024-11-05
+
+### ⚙️ Miscellaneous Tasks
+
+- *(actions)* New github actions
+- Version bump to 1.0.0
+
 ## [0.2.4] - 2024-11-05
 
 ### ⚙️ Miscellaneous Tasks
