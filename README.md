@@ -19,10 +19,10 @@
 
 ## Installation
 
-To install sync-mta-version as a development dependency, run:
+Install `sync-mta-version` globally:
 
 ```bash
-npm install --save-dev @dxfrontier/sync-mta-version
+npm install -g @dxfrontier/sync-mta-version
 ```
 
 ### Usage
@@ -83,7 +83,7 @@ on:
       - main
     types:
       - closed
-
+  
 permissions:
   contents: write
   pull-requests: write
@@ -100,10 +100,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        run: npm install @dxfrontier/sync-mta-version
 
       - name: Sync mta versioning
-        run: npx sync-mta-version -f mta.yaml
+        run: npx @dxfrontier/sync-mta-version -f mta.yaml
 ```
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
