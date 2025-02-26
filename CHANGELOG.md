@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2025-02-26
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Changed deployment and release to main branch
+- *(release)* Updated to the `@dxfrontier` common release
+- *(enforce-labels)* Updated
+
 ## [1.0.1] - 2024-11-05
 
 ### ⚙️ Miscellaneous Tasks
