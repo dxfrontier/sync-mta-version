@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2025-03-06
+
+### ⚙️ Miscellaneous Tasks
+
+- Bump version, CHANGELOG.md generated
+- *(readme)* Small changes to the readme
+
 ## [1.0.2] - 2025-02-26
 
 ### ⚙️ Miscellaneous Tasks
