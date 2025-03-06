@@ -52,7 +52,7 @@ $ sync-mta-version -f mta.yaml -u /app
 
 ```json
 "scripts": {
-  "sync:mta": "sync-mta-version -f mta-yaml"
+  "sync:mta": "sync-mta-version -f mta.yml"
 }
 ```
 
@@ -65,6 +65,13 @@ $ sync-mta-version -f mta.yaml -u /app
 npm run sync:mta
 ```
 
+> [!TIP]
+> To see all commands, run:
+> ```bash
+> sync-mta-version --help
+> ```
+> after you've installed globally using [Installation step](#installation).
+ 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 #### `Option 2`: using as `github` `workflow` 
@@ -117,7 +124,7 @@ Please make sure to update tests as appropriate.
 
 ![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)
 
-Copyright (c) 2024 DXFrontier
+Copyright (c) 2025 DXFrontier
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
