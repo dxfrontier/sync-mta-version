@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] - 2026-08-05
+
+### 🐛 Bug Fixes
+
+- *(deps)* Update all dependencies and resolve 26 security vulnerabilities
+
+### ⚙️ Miscellaneous Tasks
+
+- Bump version, CHANGELOG.md generated
+- *(workflows)* Align npm publish with org-level granular token and provenance
+
 ## [1.0.3] - 2025-03-06
 
 ### ⚙️ Miscellaneous Tasks
